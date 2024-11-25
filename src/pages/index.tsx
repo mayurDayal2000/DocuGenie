@@ -1,115 +1,142 @@
-import Image from "next/image";
-import localFont from "next/font/local";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { FeatureCard } from "@/components/FeatureCard";
+import { Step } from "@/components/Step";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, FileText, GitBranch, Github } from "lucide-react";
+import Head from "next/head";
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const openExternalLink = () =>
+    window.open("https://github.com/apps/docugeniedev");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  return (
+    <>
+      <Head>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <title>DocuGenie | Home</title>
+      </Head>
+      <div className="min-h-screen bg-gray-900 text-gray-100">
+        {/* Header */}
+        <header className="container mx-auto px-4 py-6 flex justify-between items-center">
+          <div className="text-2xl font-bold text-purple-500">DocuGenie</div>
+          <nav className="space-x-4">
+            <Link
+              href="#features"
+              className="hover:text-purple-400 transition-colors"
+            >
+              Features
+            </Link>
+            <Link
+              href="#how-it-works"
+              className="hover:text-purple-400 transition-colors"
+            >
+              How it Works
+            </Link>
+          </nav>
+        </header>
+
+        <main>
+          {/* Hero Section */}
+          <section className="container mx-auto px-4 py-20 text-center">
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              Your Personal Documentation{" "}
+              <span className="text-purple-500">Genie</span>
+            </h1>
+            <p className="text-xl mb-8 text-gray-400 max-w-2xl mx-auto">
+              Automatically generate changelogs and README files to keep your
+              GitHub repositories organized and up-to-date.
+            </p>
+            <Button
+              size="lg"
+              className="bg-purple-500 hover:bg-purple-600 text-white"
+              onClick={openExternalLink}
+            >
+              Get Started <ArrowRight className="ml-2" />
+            </Button>
+          </section>
+
+          {/* Features section */}
+          <section id="features" className="bg-gray-800 py-20">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold mb-12 text-center">Features</h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                <FeatureCard
+                  icon={<Github className="w-12 h-12 text-purple-500" />}
+                  title="GitHub Integration"
+                  description="Seamlessly connects with your GitHub repositories for instant documentation updates."
+                />
+                <FeatureCard
+                  icon={<FileText className="w-12 h-12 text-purple-500" />}
+                  title="Automatic README Generation"
+                  description="Creates comprehensive README files tailored to your project structure and content."
+                />
+                <FeatureCard
+                  icon={<GitBranch className="w-12 h-12 text-purple-500" />}
+                  title="Smart Changelogs"
+                  description="Generates detailed changelogs based on your commit history and pull requests."
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* How it works section */}
+          <section id="how-it-works" className="py-20">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold mb-12 text-center">
+                How It Works
+              </h2>
+              <div className="max-w-3xl mx-auto">
+                <Step
+                  number={1}
+                  title="Connect Your Repository"
+                  description="Link DocuGenie to your GitHub account and select the repositories you want to manage."
+                />
+                <Step
+                  number={2}
+                  title="Customize Your Preferences"
+                  description="Set your documentation preferences and choose the elements you want to include."
+                />
+                <Step
+                  number={3}
+                  title="Let DocuGenie Work Its Magic"
+                  description="Our AI analyzes your codebase and generates comprehensive documentation automatically."
+                />
+                <Step
+                  number={4}
+                  title="Review and Publish"
+                  description="Review the generated documentation, make any final tweaks, and publish with one click."
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* CTA section */}
+          <section className="py-20">
+            <div className="container mx-auto px-4 text-center">
+              <h2 className="text-3xl font-bold mb-4">
+                Ready to Streamline Your Documentation?
+              </h2>
+              <p className="text-xl mb-8 text-gray-400 max-w-2xl mx-auto">
+                Join hundreds of developers who are saving time and improving
+                their project documentation with DocuGenie.
+              </p>
+              <Button
+                size="lg"
+                className="bg-purple-500 hover:bg-purple-600 text-white"
+                onClick={openExternalLink}
+              >
+                Get Started for Free <ArrowRight className="ml-2" />
+              </Button>
+            </div>
+          </section>
+        </main>
+
+        <footer className="bg-gray-800 py-8">
+          <div className="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2023 DocuGenie. All rights reserved.</p>
+          </div>
+        </footer>
+      </div>
+    </>
   );
 }
